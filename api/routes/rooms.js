@@ -1,6 +1,7 @@
 const express=require("express");
-const {createHotel}=require("../controllers/HotelController/hotelCreate")
+const {createRoom}=require("../controllers/RoomController/room")
+const { verifyAdmin } =require ("../utils/verifyToken");
 const router=express.Router();
-router.post("/", createHotel )
+router.post("/:hotelid",verifyAdmin, createRoom )
 
 module.exports=router;
