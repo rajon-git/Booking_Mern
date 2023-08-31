@@ -48,6 +48,21 @@ const updateRoomAvailability = async (req, res) => {
     }
   };
 
+const deleteRoom = async (req, res) => {
+    const hotelId = req.params.hotelid;
+    try {
+      await Room.findByIdAndDelete(req.params.id);
+      try {
+        await Hotel.findByIdAndUpdate(hotelId, {
+          $pull: { rooms: req.params.id },
+        });
+      } catch (err) {
+        res.status(400).json(err.message)
+      }
+      res.status(200).json("Room has been deleted.");
+    } catch (err) {
+        res.status(400).json(err.message)
+    }
+  };
   
-
-  module.exports={createRoom,updateRoom, updateRoomAvailability}
+  module.exports={createRoom,updateRoom, updateRoomAvailability, deleteRoom}
