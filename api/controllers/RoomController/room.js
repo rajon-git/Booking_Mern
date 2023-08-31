@@ -1,5 +1,6 @@
 const Room =require("../../models/Room");
 const Hotel =require("../../models/Hotel.js");
+
 const createRoom = async (req, res) => {
     const hotelId = req.params.hotelid;
     const newRoom = new Room(req.body);
@@ -30,6 +31,23 @@ const updateRoom = async (req, res) => {
         res.status(400).json(err.message)
     }
   };
+
+const updateRoomAvailability = async (req, res) => {
+    try {
+      await Room.updateOne(
+        { "roomNumbers._id": req.params.id },
+        {
+          $push: {
+            "roomNumbers.$.unavailableDates": req.body.dates
+          },
+        }
+      );
+      res.status(200).json("Room status has been updated.");
+    } catch (err) {
+        res.status(400).json(err.message)
+    }
+  };
+
   
 
-  module.exports={createRoom,updateRoom}
+  module.exports={createRoom,updateRoom, updateRoomAvailability}
