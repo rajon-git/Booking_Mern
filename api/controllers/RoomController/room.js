@@ -64,5 +64,22 @@ const deleteRoom = async (req, res) => {
         res.status(400).json(err.message)
     }
   };
+
+const getRoom = async (req, res) => {
+    try {
+      const room = await Room.findById(req.params.id);
+      res.status(200).json(room);
+    } catch (err) {
+        res.status(400).json(err.message)
+    }
+  };
+const getRooms = async (req, res) => {
+    try {
+      const rooms = await Room.find();
+      res.status(200).json(rooms);
+    } catch (err) {
+        res.status(400).json(err.message)
+    }
+  }
   
-  module.exports={createRoom,updateRoom, updateRoomAvailability, deleteRoom}
+  module.exports={createRoom,updateRoom, updateRoomAvailability, deleteRoom, getRoom}
