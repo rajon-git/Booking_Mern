@@ -1,6 +1,7 @@
 const express=require("express");
-const {createHotel}=require("../controllers/HotelController/hotelCreate")
+const {register,login}=require("../controllers/AuthController/auth")
 const router=express.Router();
-router.post("/", createHotel )
+router.post("/register", register )
+router.post("/login",login)
 
 module.exports=router;
