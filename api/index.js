@@ -6,10 +6,12 @@ const morgan=require("morgan")
 const helmet=require("helmet")
 const {readdirSync}=require("fs")
 const cors=require("cors")
+const cookieParser=require("cookie-parser")
 require("dotenv").config();
 
 //implement middlewares
 app.use(cors())
+app.use(cookieParser())
 app.use(helmet())
 app.use(morgan("dev"))
 app.use(express.json())
