@@ -18,4 +18,18 @@ const createRoom = async (req, res) => {
     }
   };
 
-  module.exports={createRoom}
+const updateRoom = async (req, res) => {
+    try {
+      const updatedRoom = await Room.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true }
+      );
+      res.status(200).json(updatedRoom);
+    } catch (err) {
+        res.status(400).json(err.message)
+    }
+  };
+  
+
+  module.exports={createRoom,updateRoom}
