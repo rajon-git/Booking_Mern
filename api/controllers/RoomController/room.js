@@ -82,4 +82,4 @@ const getRooms = async (req, res) => {
     }
   }
   
-  module.exports={createRoom,updateRoom, updateRoomAvailability, deleteRoom, getRoom}
+  module.exports={createRoom,updateRoom, updateRoomAvailability, deleteRoom, getRoom,getRooms}
