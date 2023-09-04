@@ -4,8 +4,8 @@ const {verifyAdmin} =require("../utils/verifyToken")
 const router=express.Router();
 
 
-router.post("/create", createHotel )
-router.put("/update/:id", updateHotel )
+router.post("/",verifyAdmin, createHotel )
+router.put("/:id",verifyAdmin, updateHotel )
 
 router.delete("/:id", verifyAdmin, deleteHotel);
 //GET

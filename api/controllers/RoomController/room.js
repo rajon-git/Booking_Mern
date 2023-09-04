@@ -1,5 +1,5 @@
 const Room =require("../../models/Room");
-const Hotel =require("../../models/Hotel.js");
+const Hotel =require("../../models/Hotel");
 
 const createRoom = async (req, res) => {
     const hotelId = req.params.hotelid;
